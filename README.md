@@ -4,22 +4,20 @@
 
 ### (k,r) - rodzina automatów
 
-k = 2
-r = 1
-=> 256 automatów elementarnych
-nazwa od 0 do 256, przekłada się na regułę
-
-dla (2,1) i (3,1) badamy głównie w nich uszkodzenia
-puszczamy na raz symulację x(t), na krawedziach, roznica, diagram debriana
+- k = 2
+- r = 1
+- => 256 automatów elementarnych
+- nazwa od 0 do 256, przekłada się na regułę
+- dla (2,1) i (3,1) badamy głównie w nich uszkodzenia
+- puszczamy na raz symulację x(t), na krawedziach, roznica, diagram debriana
 
 ### dla (1 + 1), gładkie podłoże, losujemy, gdzie spadnie kwaracik
 
-3 modele:
-famili
-walt-vilain - wiazania
-dasarmy-tamborena - rogi
-
-chropowatosc grubosci powierzchni sigma = sqrt(sum((h_i - <h>)^2)/n(n-1))
+- 3 modele:
+- famili
+- walt-vilain - wiazania
+- dasarmy-tamborena - rogi
+- chropowatosc grubosci powierzchni sigma = sqrt(sum((h_i - <h>)^2)/n(n-1))
 
 ### modele hydrodynamiczne
 
@@ -94,6 +92,7 @@ reguly zderzen
 ### q2r
 
 ### model cifa (modeloanie katalityczne)
+
 - sledzimy gestosc produktow w ukladzie
 
 ### symulacje ruchu ulicznego
@@ -110,4 +109,15 @@ reguly zderzen
 2D - opis w dokumencie
 - po ulicach na Manhattanie - 6 sklejonych torusow (3 poz i 3 pion), sklejone sygnalizacja (na skrzyzowanach(
 - na skrzyzowaniach - z sygnalizacja swietlna
-- czas przelaczenia itd.. do sygnalizatora
+- czas przelaczenia itd.. do sygnalizatora, dodac do elementow sterowania
+
+### modele epidemiologiczne
+
+- 3 stany komorek
+- SIR - podatny, zainfektowany i removed/recovered
+- siec kwadratowa
+- alfa i beta
+- alfa - podatna zostanie zarazona przez sasiada
+- beta - cholery, ktore nie moga sie uodpornic
+- musza sie sumowac do 1
+- synchroniczny bądź asyncgroniczny
