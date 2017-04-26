@@ -13,3 +13,9 @@
 
 - famili
 - chropowatosc grubosci powierzchni sigma = sqrt(sum((h_i - <h>)^2)/n(n-1))
+
+### technologie:
+
+- reactjs
+- babylonjs
+- recharts / dygraphs
