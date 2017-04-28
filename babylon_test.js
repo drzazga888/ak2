@@ -1,3 +1,5 @@
+// fajny playground: https://playground.babylonjs.com/
+
 const props = {
     width: 10,
     height: 10,
