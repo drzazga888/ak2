@@ -3,22 +3,44 @@ import ReactDOM from 'react-dom';
 import Ground from './components/ground';
 import './style.scss';
 
-const props = {
-    width: 10,
-    height: 10,
-    bars: [
-        [ 0, 0, 1, 2, 2, 2, 2, 1, 2, 1 ],
-        [ 0, 1, 2, 4, 2, 1, 2, 2, 2, 2 ],
-        [ 1, 0, 2, 2, 3, 1, 2, 2, 2, 2 ],
-        [ 1, 0, 1, 2, 2, 2, 2, 0, 1, 2 ],
-        [ 0, 0, 1, 2, 2, 2, 2, 1, 2, 1 ],
-        [ 0, 1, 2, 4, 2, 1, 2, 2, 2, 2 ],
-        [ 1, 0, 2, 2, 3, 1, 2, 2, 2, 2 ],
-        [ 1, 0, 1, 2, 2, 2, 2, 0, 1, 2 ],
-        [ 0, 0, 1, 2, 2, 2, 2, 1, 2, 1 ],
-        [ 0, 1, 2, 4, 2, 1, 2, 2, 2, 2 ]
-    ]
-};
+class GroundTester extends React.PureComponent {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            height: 50,
+            width: 50,
+            bars: this.randomize()
+        };
+    }
 
-ReactDOM.render(<Ground {...props} />, document.getElementById('react-me'));
+    randomize() {
+        let arr = [];
+        for (let i = 0; i < 50; ++i) {
+            let row = [];
+            for (let j = 0; j < 50; ++j) {
+                row.push(Math.floor(Math.random() * 6));
+            }
+            arr.push(row);
+        }
+        return arr;
+    }
+
+    randomizeClicked() {
+        this.setState({
+            bars: this.randomize()
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <button onClick={this.randomizeClicked.bind(this)}>Randomize</button>
+                <Ground {...this.state} />;
+            </div>
+        )
+    }
+
+}
+
+ReactDOM.render(<GroundTester />, document.getElementById('react-me'));
