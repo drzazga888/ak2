@@ -4,7 +4,7 @@ import { initBars, nextStep, getRoughness } from './alghoritms';
 
 let intervalId = null;
 
-const rowsInit = 25;
+const rowsInit = 10;
 const colsInit = 25;
 
 const initialState = {

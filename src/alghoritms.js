@@ -1,6 +1,6 @@
 export function nextStep(rows, cols, bars) {
-    let targetCol = Math.floor(Math.random() * rows);
-    let targetRow = Math.floor(Math.random() * cols);
+    let targetRow = Math.floor(Math.random() * rows);
+    let targetCol = Math.floor(Math.random() * cols);
     const neighbours = [
         { row: targetRow, col: (targetCol + cols - 1) % cols },
         { row: targetRow, col: (targetCol + 1) % cols },

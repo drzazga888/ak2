@@ -15,7 +15,8 @@ class Stats extends React.PureComponent {
 			labels: ['Krok', 'Chropowatość'],
 			axes: {
 				'y': {
-					valueFormatter: val => `${Number(val).toFixed(5)}`,
+					axisLabelFormatter: val => Math.round(Number(val) * 10000) / 10000,
+					valueFormatter: val => Number(val).toFixed(5),
 					includeZero: true
 				}
 			},

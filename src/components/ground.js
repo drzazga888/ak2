@@ -3,45 +3,58 @@ import BABYLON from 'babylonjs';
 
 class Ground extends React.PureComponent {
 
-    _createScene(props) {
-        var scene = new BABYLON.Scene(this.engine);
+    constructor(props) {
+        super(props);
+        this.boxes = [];
+        this.plane = null;
+    }
 
-        var camera = new BABYLON.ArcRotateCamera("Camera", 3 * Math.PI / 2.2, Math.PI / 3.5, 33, BABYLON.Vector3.Zero(), scene);
+    _createScene(props) {
+        this.scene = new BABYLON.Scene(this.engine);
+
+        var camera = new BABYLON.ArcRotateCamera("Camera", 3 * Math.PI / 2.2, Math.PI / 3.5, 33, BABYLON.Vector3.Zero(), this.scene);
 
         camera.attachControl(this.refs.canvas, true);
 
-        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
+        this.scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 
-        var light = new BABYLON.DirectionalLight("Dir0", new BABYLON.Vector3(-2, -4, 1), scene);
+        var light = new BABYLON.DirectionalLight("Dir0", new BABYLON.Vector3(-2, -4, 1), this.scene);
 
-        var plan = BABYLON.Mesh.CreatePlane("plane", props.width, scene);
+        this.plane = BABYLON.Mesh.CreatePlane("plane", 1, this.scene);
 
-        var materialGround = new BABYLON.StandardMaterial("Mat", scene);
+        var materialGround = new BABYLON.StandardMaterial("Mat", this.scene);
         materialGround.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2);
-        plan.material = materialGround;
+        this.plane.material = materialGround;
 
-        plan.rotation.x = Math.PI / 2;
-        plan.scaling.y = props.height / props.width;
-        plan.position.y -= 0.5;
+        this.plane.rotation.x = Math.PI / 2;
+        this.plane.position.y -= 0.5;
 
-        props.bars.forEach((row, i) => {
-            row.forEach((bar, j) => {
-                let box = BABYLON.Mesh.CreateBox("box_" + i + "_" + j, 1.0, scene);
-                box.position.x += j - (props.width - 1) / 2;
-                box.position.z -= i - (props.height - 1) / 2;
-                box.visibility = bar;
-                box.scaling.y = bar;
-                box.position.y = (bar - 1) / 2;
-            });
-        });
-
-        return scene;
+        this._createGround(props);
     }
 
-    _updateScene(props) {
+    _createGround(props) {
+        let self = this;
+        this.plane.scaling.x = props.height;
+        this.plane.scaling.y = props.width;
+        this.boxes.forEach(box => {
+            box.visibility = false;
+            box.dispose();
+        });
+        this.boxes = new Array(props.height * props.width);
         props.bars.forEach((row, i) => {
             row.forEach((bar, j) => {
-                let box = this.scene.getMeshByID("box_" + i + "_" + j);
+                let box = BABYLON.Mesh.CreateBox("box_" + i + "_" + j, 1.0, this.scene);
+                box.position.x += j - (props.height - 1) / 2;
+                box.position.z -= i - (props.width - 1) / 2;
+                self.boxes[i + j * props.width] = box;
+            });
+        });
+    }
+
+    _updateGround(props) {
+        props.bars.forEach((row, i) => {
+            row.forEach((bar, j) => {
+                let box = this.boxes[i + j * props.width];
                 box.visibility = bar;
                 box.scaling.y = bar;
                 box.position.y = (bar - 1) / 2;
@@ -51,7 +64,8 @@ class Ground extends React.PureComponent {
 
     _initScene() {
         this.engine = new BABYLON.Engine(this.refs.canvas, true);
-        this.scene = this._createScene(this.props);
+        this._createScene(this.props);
+        this._updateGround(this.props);
         this.engine.runRenderLoop(function(){
             this.scene.render();
         }.bind(this));
@@ -61,8 +75,11 @@ class Ground extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        if (this.props.width !== prevProps.width || this.props.height !== prevProps.height) {
+            this._createGround(this.props);
+        }
         if (this.props.bars !== prevProps.bars) {
-            this._updateScene(this.props);
+            this._updateGround(this.props);
         }
     }
 
