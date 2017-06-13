@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import * as actions from '../actions/automaton';
-import UI from '../components/ui';
+import * as actions from './actions';
+import UI from './components/ui';
 
 const mapStateToProps = state => state;
 

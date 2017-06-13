@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import Automaton from './containers/automaton';
-import store from './reducers/automaton';
+import Automaton from './containers';
+import store from './reducers';
 import './style.scss';
 
 const toRender = (
