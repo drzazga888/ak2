@@ -37,15 +37,12 @@ class Ground extends React.PureComponent {
     }
 
     _updateScene(props) {
-        console.log('update!', this.scene);
         props.bars.forEach((row, i) => {
             row.forEach((bar, j) => {
-                if (bar) {
-                    let box = this.scene.getMeshByID("box_" + i + "_" + j);
-                    box.visibility = bar;
-                    box.scaling.y = bar;
-                    box.position.y = (bar - 1) / 2;
-                }
+                let box = this.scene.getMeshByID("box_" + i + "_" + j);
+                box.visibility = bar;
+                box.scaling.y = bar;
+                box.position.y = (bar - 1) / 2;
             });
         });
     }
