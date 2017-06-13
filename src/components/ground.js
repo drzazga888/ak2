@@ -6,9 +6,11 @@ class Ground extends React.PureComponent {
     _createScene(props) {
         var scene = new BABYLON.Scene(this.engine);
 
-        var camera = new BABYLON.ArcRotateCamera("Camera", 3 * Math.PI / 2.2, Math.PI / 3.5, 20, BABYLON.Vector3.Zero(), scene);
+        var camera = new BABYLON.ArcRotateCamera("Camera", 3 * Math.PI / 2.2, Math.PI / 3.5, 33, BABYLON.Vector3.Zero(), scene);
 
         camera.attachControl(this.refs.canvas, true);
+
+        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 
         var light = new BABYLON.DirectionalLight("Dir0", new BABYLON.Vector3(-2, -4, 1), scene);
 

@@ -4,15 +4,17 @@ import { initBars, nextStep, getRoughness } from './alghoritms';
 
 let intervalId = null;
 
-const rowsInit = 20;
-const colsInit = 20;
+const rowsInit = 25;
+const colsInit = 25;
 
 const initialState = {
     isRunning: false,
     rows: rowsInit,
     cols: colsInit,
     interval: 0,
-    bars: initBars(rowsInit, colsInit)
+    bars: initBars(rowsInit, colsInit),
+    roughness: 0,
+    step: 0
 };
 
 const reducer = (state, action) => {
@@ -26,15 +28,17 @@ const reducer = (state, action) => {
             }
             return { ...state, isRunning: switchedToRunning };
         case 'SET_ROWS':
-            return { ...state, rows: action.rows, bars: initBars(action.rows, state.cols) };
+            return { ...state, rows: action.rows, bars: initBars(action.rows, state.cols), step: 0, roughness: 0 };
         case 'SET_COLS':
-            return { ...state, cols: action.cols, bars: initBars(state.rows, action.cols) };
+            return { ...state, cols: action.cols, bars: initBars(state.rows, action.cols), step: 0, roughness: 0 };
         case 'SET_INTERVAL':
             return { ...state, interval: action.interval };
         case 'RESET_BOARD':
-            return { ...state, bars: initBars(state.rows, state.cols) };
+            return { ...state, bars: initBars(state.rows, state.cols), step: 0, roughness: 0 };
         case 'STEP':
-            return { ...state, bars: nextStep(state.rows, state.cols, state.bars) }
+            const bars = nextStep(state.rows, state.cols, state.bars);
+            const roughness = getRoughness(state.rows, state.cols, bars);
+            return { ...state, bars, roughness, step: state.step + 1 }
         default:
             return state;
     }

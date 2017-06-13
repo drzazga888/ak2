@@ -1,13 +1,138 @@
-html, body {
-    overflow: hidden;
-    width   : 100%;
-    height  : 100%;
-    margin  : 0;
-    padding : 0;
+@import '~dygraphs/dist/dygraph.min';
+
+$bgColor: #464646;
+$fontColor: #D9D9D9;
+$uiColor: #2E2E2E;
+$accent: #00E3FF;
+
+html {
+	height: 100%;
+	min-height: 100%;
+}
+
+#react-me {
+	height: 100%;
+}
+
+* {
+	font-family: 'Poiret One', cursive;
+	color: $fontColor;
+	font-size: 18px;
+}
+
+body {
+	background: $bgColor;
+	margin: 0;
+	height: 100%;
+}
+
+button {
+	background: $uiColor;
+	border: none;
+	margin: 10px;
+	padding: 5px 25px;
+}
+
+input:disabled,
+button:disabled {
+	opacity: 0.5;
+}
+
+input {
+	background: none;
+	border: none;
+	border-bottom: solid 2px $uiColor;
+}
+
+h1 {
+	font-size: 2.3em;
+}
+
+strong {
+	color: $accent;
+}
+
+.app {
+	display: flex;
+	height: 100%;
+	.side {
+		flex-basis: 400px;
+		flex-grow: 0;
+		flex-shrink: 0;
+		padding-right: 20px;
+		padding: 20px;
+		.app-header {
+			&>* {
+				margin: 10px 0;
+			}
+		}
+		&>* {
+			border-bottom: dotted 2px $uiColor;
+			padding: 20px 0;
+		}
+		&>*:last-child {
+			border-bottom: none;
+		}
+		overflow-y: auto;
+	}
+	.main {
+		padding: 20px;
+		flex-grow: 1;
+		display: flex;
+	}
 }
 
 .ground {
-    width   : 100%;
-    height  : 100%;
+	border: solid 1px $uiColor;
+	margin: auto;
+	padding: 2px;
     touch-action: none;
+	width: 100%;
+	height: 100%;
+	user-select: none;
+}
+
+.inputs {
+	.buttons {
+		margin-left: -10px;
+		margin-top: -10px;
+	}
+	.input-blocks {
+		&>label {
+			display: block;
+			margin: 8px 0;
+			width: 100%;
+			clear: both;
+			&>* {
+				width: 50%;
+				float: right;
+			}
+		}
+	}
+}
+
+.stats {
+	.dygraph-legend {
+		background: $bgColor;
+		border: solid 1px $uiColor;
+		padding: 3px;
+		top: 0 !important;
+		right: 0 !important;
+		width: 70% !important;
+		* {
+			font-size: 13px;
+		}
+	}
+	.dygraph-axis-label {
+		color: $fontColor;
+		font-size: 10px;
+	}
+	.chart {
+		width: 100%;
+		height: 300px;
+		&>* {
+			width: 100% !important;
+			height: 100% !important;
+		}
+	}
 }
