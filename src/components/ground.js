@@ -20,7 +20,7 @@ class Ground extends React.PureComponent {
 
         var light = new BABYLON.DirectionalLight("Dir0", new BABYLON.Vector3(-2, -4, 1), this.scene);
 
-        this.plane = BABYLON.Mesh.CreatePlane("plane", 1, this.scene);
+        this.plane = BABYLON.Mesh.CreatePlane("plane", 1, this.scene, false, BABYLON.Mesh.DOUBLESIDE);
 
         var materialGround = new BABYLON.StandardMaterial("Mat", this.scene);
         materialGround.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2);

@@ -4,15 +4,18 @@ import { initBars, nextStep, getRoughness } from './alghoritms';
 
 let intervalId = null;
 
-const rowsInit = 10;
-const colsInit = 25;
+const initialParams = {
+    rows: 20,
+    cols: 20,
+    interval: 50
+};
 
 const initialState = {
     isRunning: false,
-    rows: rowsInit,
-    cols: colsInit,
-    interval: 0,
-    bars: initBars(rowsInit, colsInit),
+    rows: initialParams.rows,
+    cols: initialParams.cols,
+    interval: initialParams.interval,
+    bars: initBars(initialParams.rows, initialParams.cols),
     roughness: 0,
     step: 0
 };

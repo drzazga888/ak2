@@ -49,8 +49,10 @@ class Stats extends React.PureComponent {
 	render() {
 		return (
 			<div className="stats">
-				<p>Krok: <strong>{this.props.step}</strong></p>
-				<p>Chropowatość: <strong>{(this.props.roughness).toFixed(5)}</strong></p>
+				<p>
+					<span title="Nr kroku symulacji">Krok: <strong>{this.props.step}</strong></span>,&nbsp;
+					<span title="Chropowaść obliczana jest jako odchylenie standardowe wysokości wszystkich zdyskretyzowanych punktów w podstawie podłoża">Chropowatość: <strong>{(this.props.roughness).toFixed(5)}</strong></span>
+				</p>
 				<div className="chart" ref="chartDom"></div>
 			</div>
 		);

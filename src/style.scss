@@ -61,6 +61,7 @@ strong {
 		flex-shrink: 0;
 		padding-right: 20px;
 		padding: 20px;
+		background: rgba(0, 0, 0, 0.2);
 		.app-header {
 			&>* {
 				margin: 10px 0;
@@ -76,16 +77,12 @@ strong {
 		overflow-y: auto;
 	}
 	.main {
-		padding: 20px;
 		flex-grow: 1;
 		display: flex;
 	}
 }
 
 .ground {
-	border: solid 1px $uiColor;
-	margin: auto;
-	padding: 2px;
     touch-action: none;
 	width: 100%;
 	height: 100%;
@@ -112,12 +109,10 @@ strong {
 
 .stats {
 	.dygraph-legend {
-		background: $bgColor;
-		border: solid 1px $uiColor;
+		background: transparent;
 		padding: 3px;
 		top: 0 !important;
-		right: 0 !important;
-		width: 70% !important;
+		left: 70px !important;
 		* {
 			font-size: 13px;
 		}

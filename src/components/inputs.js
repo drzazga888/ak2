@@ -20,13 +20,13 @@ const Inputs = props => (
             </label>
 
             {/* rows input */}
-            <label title="Liczba wierszy automatu; można wprowadzać wartości całkowite od 1 do 200">
+            <label title="Liczba wierszy podstawy podłoża; można wprowadzać wartości całkowite od 1 do 200">
                 Liczba wierszy
                 <input type="number" min={1} max={200} step={1} value={props.rows} onChange={props.onRowsChanged} disabled={props.isRunning} />
             </label>
 
             {/* cols input */}
-            <label title="Liczba kolumn automatu; można wprowadzać wartości całkowite od 1 do 999">
+            <label title="Liczba kolumn podstawy podłoża; można wprowadzać wartości całkowite od 1 do 200">
                 Liczba kolumn
                 <input type="number" min={1} max={200} step={1} value={props.cols} onChange={props.onColsChanged} disabled={props.isRunning} />
             </label>
